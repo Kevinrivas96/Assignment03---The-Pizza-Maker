@@ -24,7 +24,7 @@ class Pizza {
 
     // Class Method, to dislpay outupt
     showMsg() {
-        return `Hello ${this.fName} ${this.lName}! Your order for: ${this.pizzaType} ${this.size} Pizza has been placed. ${this.extras} It will be delivered to ${this.address} ${this.city} ${this.province} ${this.postal} in aprox. 30 mins. Your preffered payment method is: ${this.payment}. We will call ${this.phone} when the order is ready.`;
+        return `Hello ${this.fName} ${this.lName}! Your order for: ${this.pizzaType} ${this.size} Pizza has been placed. ${this.extras} will be delivered to ${this.address} ${this.city} ${this.province} ${this.postal} in aprox. 30 mins. Your preffered payment method is: ${this.payment}. We will call ${this.phone} when the order is ready.`;
     }
 }
 

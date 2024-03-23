@@ -20,3 +20,7 @@ body {
     background-color: #212121;
     padding-inline: 20px;
 }
+
+.modal-footer {
+    justify-content: space-between !important;
+}
