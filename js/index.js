@@ -8,9 +8,10 @@ class Pizza {
     postal;
 
     // Define Contructor
-    constructor(fName, lName, address, city, province, postal, pizzaType, extras, size, payment) {
+    constructor(fName, lName, phone, address, city, province, postal, pizzaType, extras, size, payment) {
         this.fName = fName;
         this.lName = lName;
+        this.phone = phone;
         this.address = address;
         this.city = city;
         this.province = province;
@@ -23,7 +24,7 @@ class Pizza {
 
     // Class Method, to dislpay outupt
     showMsg() {
-        return `Hello ${this.fName} ${this.lName}! Your order for: ${this.pizzaType} ${this.size} Pizza has been placed. ${this.extras} It will be delivered to ${this.address} ${this.city} ${this.province} ${this.postal} in aprox. 30 mins. Your preffered payment method is: ${this.payment}.`;
+        return `Hello ${this.fName} ${this.lName}! Your order for: ${this.pizzaType} ${this.size} Pizza has been placed. ${this.extras} It will be delivered to ${this.address} ${this.city} ${this.province} ${this.postal} in aprox. 30 mins. Your preffered payment method is: ${this.payment}. We will call ${this.phone} when the order is ready.`;
     }
 }
 
@@ -38,6 +39,7 @@ order.addEventListener('click', function (e) {
     // Retrieve all the values from the fields
     let fName = document.querySelector("#fName").value;
     let lName = document.querySelector("#lName").value;
+    let phone = document.querySelector("#inputPhone").value;
     let address = document.querySelector("#inputAddress").value;
     let city = document.querySelector("#inputCity").value;
     let province = document.querySelector("#inputProvince").value;
@@ -59,19 +61,19 @@ order.addEventListener('click', function (e) {
 
     // Get all extras if any
     let extrasSelected = document.querySelectorAll("#extras");
-    let extras = "Your Extras: ";
+    extrasSelected = Array.from(extrasSelected).filter(checkbox => checkbox.checked);
 
-    extrasSelected.forEach(element => {
-        if (element.checked) {
-            extras += "1x " + element.value + ", ";
+    let extras = extrasSelected.length > 0 ? "Your Extras: " : "No Extras. ";
+
+    extrasSelected.forEach((element, index) => {
+        extras += "1x " + element.value + " ";
+        if (index > extrasSelected.length - 1) {
+            extras += ", ";
         }
     });
 
-    // Remove comma
-    extras = extras.slice(0, -2);
-
     // check that all fields are filled out
-    if (!fName || !lName || !address || !city || !province || !postal || !size || !payment || !pizzaType) {
+    if (!fName || !lName || !phone || !address || !city || !province || !postal || !size || !payment || !pizzaType) {
         alert("Please fill out all fields.");
         return;
     }
@@ -80,10 +82,10 @@ order.addEventListener('click', function (e) {
     let showOrder = document.querySelector("#showOrder");
     // Get p for student number to display student ID and name
     let studentNum = document.querySelector("#student");
-    studentNum.textContent = "Made by Kevin Rivas - Student ID: 200555784"
+    studentNum.textContent = "Kevin Rivas - Student ID: 200555784"
 
     // Create a new Pizza Object
-    let myOrder = new Pizza(fName, lName, address, city, province, postal, pizzaType, extras, size.value, payment.value);
+    let myOrder = new Pizza(fName, lName, phone, address, city, province, postal, pizzaType, extras, size.value, payment.value);
 
     // Invoke class method
     showOrder.textContent = myOrder.showMsg();

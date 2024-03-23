@@ -14,3 +14,9 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.modal-content {
+    color: #fff;
+    background-color: #212121;
+    padding-inline: 20px;
+}
